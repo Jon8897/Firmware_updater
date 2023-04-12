@@ -37,6 +37,8 @@ function Get-BackupConfiguration {
 
     # Download backup configuration
     Invoke-WebRequest -Uri "http://$deviceIP/cgi-bin/export_config.exp" -Credential $deviceCredential -OutFile $backupConfigPath
+    # Download backup configuration
+    Get-BackupConfiguration -deviceIP $deviceIP -deviceCredential $deviceCredential -backupConfigPath $backupConfigPath
 }
 })
 
@@ -47,13 +49,25 @@ $btnUpdateFirmware.Add_Click({
     $devicePassword = $txtPassword.Password
     $firmwareUrl = $txtFirmwareUrl.Text
 
-    # Add the logic for updating firmware here
+    # Create PSCredential object
+    $deviceCredential = New-Object System.Management.Automation.PSCredential($deviceUsername, ($devicePassword | ConvertTo-SecureString -AsPlainText -Force))
+
+    # Download firmware file
+    Invoke-WebRequest -Uri $firmwareUrl -OutFile $downloadPath
+
+    # Update firmware
+    Invoke-WebRequest -Uri "http://$deviceIP/cgi-bin/upgrade.cgi" -Credential $deviceCredential -Method POST -InFile $downloadPath -ContentType "application/octet-stream"
+
+    # Check device firmware version
+    $deviceInfo = Invoke-WebRequest -Uri "http://$deviceIP/cgi-bin/Maintenance/device_status_info" -Credential $deviceCredential
+
+    # Extract firmware version from the response
+    $deviceFirmwareVersion = $deviceInfo.Content -replace '(?s).*Firmware Version\s*:\s*([^\s]*).*','$1'
+
+    # Log results
+    $logEntry = "$(Get-Date) - Firmware updated to version: $deviceFirmwareVersion"
+    Add-Content -Path $logFile -Value $logEntry
 })
-
-# Show GUI
-$window.ShowDialog() | Out-Null
-
-
 
 # Create PSCredential object
 $deviceCredential = New-Object System.Management.Automation.PSCredential($deviceUsername, ($devicePassword | ConvertTo-SecureString -AsPlainText -Force))
@@ -85,3 +99,6 @@ if ($isNewerFirmware) {
     $logEntry = "$(Get-Date) - Downloaded firmware version: $downloadedFirmwareVersion - Device firmware version: $deviceFirmwareVersion - Update not needed"
     Add-Content -Path $logFile -Value $logEntry
 }
+
+# Show GUI
+$window.ShowDialog() | Out-Null
