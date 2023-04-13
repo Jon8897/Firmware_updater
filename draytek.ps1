@@ -19,27 +19,15 @@ $btnDownloadBackup.Add_Click({
     $devicePassword = $txtPassword.Password
     $firmwareUrl = $txtFirmwareUrl.Text
 
+    # Create PSCredential object
+    $deviceCredential = New-Object System.Management.Automation.PSCredential($deviceUsername, ($devicePassword | ConvertTo-SecureString -AsPlainText -Force))
+
     # Configuration
-$firmwareUrl = "https://www.example.com/path/to/firmware.bin" # Replace with the correct firmware URL
-$downloadPath = "C:\temp\firmware.bin"
-$deviceIP = "192.168.1.1" # Replace with the IP address of your Draytek device
-$deviceUsername = "admin" # Replace with the username for your Draytek device
-$devicePassword = "password" # Replace with the password for your Draytek device
-$logFile = "C:\temp\DraytekUpdater.log"
-$backupConfigPath = "C:\temp\draytek_config_backup.cfg"
+    $logFile = "C:\temp\DraytekUpdater.log"
+    $backupConfigPath = "C:\temp\draytek_config_backup.cfg"
 
-function Get-BackupConfiguration {
-    param (
-        [string]$deviceIP,
-        [System.Management.Automation.PSCredential]$deviceCredential,
-        [string]$backupConfigPath
-    )
-
-    # Download backup configuration
-    Invoke-WebRequest -Uri "http://$deviceIP/cgi-bin/export_config.exp" -Credential $deviceCredential -OutFile $backupConfigPath
     # Download backup configuration
     Get-BackupConfiguration -deviceIP $deviceIP -deviceCredential $deviceCredential -backupConfigPath $backupConfigPath
-}
 })
 
 $btnUpdateFirmware.Add_Click({
@@ -51,6 +39,10 @@ $btnUpdateFirmware.Add_Click({
 
     # Create PSCredential object
     $deviceCredential = New-Object System.Management.Automation.PSCredential($deviceUsername, ($devicePassword | ConvertTo-SecureString -AsPlainText -Force))
+
+    # Configuration
+    $downloadPath = "C:\temp\firmware.bin"
+    $logFile = "C:\temp\DraytekUpdater.log"
 
     # Download firmware file
     Invoke-WebRequest -Uri $firmwareUrl -OutFile $downloadPath
@@ -69,35 +61,15 @@ $btnUpdateFirmware.Add_Click({
     Add-Content -Path $logFile -Value $logEntry
 })
 
-# Create PSCredential object
-$deviceCredential = New-Object System.Management.Automation.PSCredential($deviceUsername, ($devicePassword | ConvertTo-SecureString -AsPlainText -Force))
+function Get-BackupConfiguration {
+    param (
+        [string]$deviceIP,
+        [System.Management.Automation.PSCredential]$deviceCredential,
+        [string]$backupConfigPath
+    )
 
-# Download backup configuration
-Get-BackupConfiguration -deviceIP $deviceIP -deviceCredential $deviceCredential -backupConfigPath $backupConfigPath
-
-# Download firmware file
-Invoke-WebRequest -Uri $firmwareUrl -OutFile $downloadPath
-
-# Check device firmware version
-$deviceInfo = Invoke-WebRequest -Uri "http://$deviceIP/cgi-bin/Maintenance/device_status_info" -Credential $deviceCredential
-
-# Extract firmware version from the response
-$deviceFirmwareVersion = $deviceInfo.Content -replace '(?s).*Firmware Version\s*:\s*([^\s]*).*','$1'
-
-# Compare downloaded firmware version with device firmware version
-$isNewerFirmware = $false # Replace with a function that compares firmware versions
-if ($isNewerFirmware) {
-    # Update Draytek device
-    # You may need to refer to the Draytek API or use a different method to update the firmware
-    $updateResult = "Firmware updated successfully" # Replace with the actual update result
-
-    # Log results
-    $logEntry = "$(Get-Date) - Downloaded firmware version: $downloadedFirmwareVersion - Device firmware version: $deviceFirmwareVersion - Update result: $updateResult"
-    Add-Content -Path $logFile -Value $logEntry
-} else {
-    # Log results
-    $logEntry = "$(Get-Date) - Downloaded firmware version: $downloadedFirmwareVersion - Device firmware version: $deviceFirmwareVersion - Update not needed"
-    Add-Content -Path $logFile -Value $logEntry
+    # Download backup configuration
+    Invoke-WebRequest -Uri "http://$deviceIP/cgi-bin/export_config.exp" -Credential $deviceCredential -OutFile $backupConfigPath
 }
 
 # Show GUI
