@@ -17,13 +17,13 @@ $btnDownloadBackup.Add_Click({
     $deviceIP = $txtDeviceIP.Text
     $deviceUsername = $txtUsername.Text
     $devicePassword = $txtPassword.Password
-    $firmwareUrl = $txtFirmwareUrl.Text
+    # $firmwareUrl = $txtFirmwareUrl.Text
 
     # Create PSCredential object
     $deviceCredential = New-Object System.Management.Automation.PSCredential($deviceUsername, ($devicePassword | ConvertTo-SecureString -AsPlainText -Force))
 
     # Configuration
-    $logFile = "C:\temp\DraytekUpdater.log"
+    # $logFile = "C:\temp\DraytekUpdater.log"
     $backupConfigPath = "C:\temp\draytek_config_backup.cfg"
 
     # Download backup configuration
