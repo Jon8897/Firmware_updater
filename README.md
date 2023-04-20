@@ -1,79 +1,14 @@
 # Firmware_updater
 
 - This is a Firmware updater built with powershell to update drayteks firmware 
-
+- Command to run cd "C: path " Invoke-Expression ".\draytek.ps1"
 
 ### Bugs
 
-Unable to find type [Windows.Markup.XamlReader].
-At C:\Users\jonathankeefe.ASTONBERKELEY\OneDrive - Aston Berkeley Systems Ltd\Desktop\Projects\git-projects\Firmware_updater\draytek.ps1:4 char:11
-+ $window = [Windows.Markup.XamlReader]::Load($reader)
-+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (Windows.Markup.XamlReader:TypeName) [], RuntimeException
-    + FullyQualifiedErrorId : TypeNotFound
- 
-You cannot call a method on a null-valued expression.
-At C:\Users\jonathankeefe.ASTONBERKELEY\OneDrive - Aston Berkeley Systems Ltd\Desktop\Projects\git-projects\Firmware_updater\draytek.ps1:7 char:1
-+ $txtDeviceIP = $window.FindName("txtDeviceIP")
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : InvokeMethodOnNull
- 
-You cannot call a method on a null-valued expression.
-At C:\Users\jonathankeefe.ASTONBERKELEY\OneDrive - Aston Berkeley Systems Ltd\Desktop\Projects\git-projects\Firmware_updater\draytek.ps1:8 char:1
-+ $txtUsername = $window.FindName("txtUsername")
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : InvokeMethodOnNull
- 
-You cannot call a method on a null-valued expression.
-At C:\Users\jonathankeefe.ASTONBERKELEY\OneDrive - Aston Berkeley Systems Ltd\Desktop\Projects\git-projects\Firmware_updater\draytek.ps1:9 char:1
-+ $txtPassword = $window.FindName("txtPassword")
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : InvokeMethodOnNull
- 
-You cannot call a method on a null-valued expression.
-At C:\Users\jonathankeefe.ASTONBERKELEY\OneDrive - Aston Berkeley Systems Ltd\Desktop\Projects\git-projects\Firmware_updater\draytek.ps1:10 char:1
-+ $txtFirmwareUrl = $window.FindName("txtFirmwareUrl")
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : InvokeMethodOnNull
- 
-You cannot call a method on a null-valued expression.
-At C:\Users\jonathankeefe.ASTONBERKELEY\OneDrive - Aston Berkeley Systems Ltd\Desktop\Projects\git-projects\Firmware_updater\draytek.ps1:11 char:1
-+ $btnDownloadBackup = $window.FindName("btnDownloadBackup")
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : InvokeMethodOnNull
- 
-You cannot call a method on a null-valued expression.
-At C:\Users\jonathankeefe.ASTONBERKELEY\OneDrive - Aston Berkeley Systems Ltd\Desktop\Projects\git-projects\Firmware_updater\draytek.ps1:12 char:1
-+ $btnUpdateFirmware = $window.FindName("btnUpdateFirmware")
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : InvokeMethodOnNull
- 
-You cannot call a method on a null-valued expression.
-At C:\Users\jonathankeefe.ASTONBERKELEY\OneDrive - Aston Berkeley Systems Ltd\Desktop\Projects\git-projects\Firmware_updater\draytek.ps1:15 char:1
-+ $btnDownloadBackup.Add_Click({
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : InvokeMethodOnNull
- 
-You cannot call a method on a null-valued expression.
-At C:\Users\jonathankeefe.ASTONBERKELEY\OneDrive - Aston Berkeley Systems Ltd\Desktop\Projects\git-projects\Firmware_updater\draytek.ps1:33 char:1
-+ $btnUpdateFirmware.Add_Click({
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : InvokeMethodOnNull
- 
-You cannot call a method on a null-valued expression.
-At C:\Users\jonathankeefe.ASTONBERKELEY\OneDrive - Aston Berkeley Systems Ltd\Desktop\Projects\git-projects\Firmware_updater\draytek.ps1:76 char:1
-+ $window.ShowDialog() | Out-Null
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : InvokeMethodOnNull
+1. The XAML file was named "DraytekUpdaterGUI.xaml" but the root element in the file was not named "DraytekUpdaterGUI". This caused an error when attempting to load the XAML file with the following line of code: **`$window = [Windows.Markup.XamlReader]::Load($reader)`**. To fix this, you can either remove the **`x:Class`** attribute from the root element of the XAML file or rename the root element to "DraytekUpdaterGUI".
+2. After loading the XAML file, the script attempted to find several controls using the **`FindName`** method, but these controls were not found. This caused errors when attempting to call methods on these null references. To fix this, ensure that the names of the controls in the XAML file match the names used in the script.
+3. There was an error in the script when attempting to add event handlers to the "Download Backup" and "Update Firmware" buttons. The error occurred because the controls were not found and were therefore null. To fix this, ensure that the names of the controls in the XAML file match the names used in the script. Also, make sure that the event handlers are enclosed in braces **`{}`** instead of parentheses **`()`**.
+4. Finally, there was an error when attempting to display the window using the **`ShowDialog()`** method. This error occurred because the **`Window`** object was null. This was caused by the errors in the previous steps which prevented the XAML file from being loaded correctly and the controls from being initialized.
  
 
  ### Possible fixes
