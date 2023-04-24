@@ -16,6 +16,7 @@ $btnUpdateFirmware = $window.FindName("btnUpdateFirmware")
 
 # Event handlers
 $btnDownloadBackup.Add_Click({
+  try{  
     # Set variables from GUI input
     $deviceIP = $txtDeviceIP.Text
     $deviceUsername = $txtUsername.Text
@@ -31,9 +32,14 @@ $btnDownloadBackup.Add_Click({
 
     # Download backup configuration
     Get-BackupConfiguration -deviceIP $deviceIP -deviceCredential $deviceCredential -backupConfigPath $backupConfigPath
+  }
+  catch{
+    Write-host "Error downloading backup configuration: $_"
+  }
 })
 
 $btnUpdateFirmware.Add_Click({
+  try{  
     # Set variables from GUI input
     $deviceIP = $txtDeviceIP.Text
     $deviceUsername = $txtUsername.Text
@@ -62,6 +68,10 @@ $btnUpdateFirmware.Add_Click({
     # Log results
     $logEntry = "$(Get-Date) - Firmware updated to version: $deviceFirmwareVersion"
     Add-Content -Path $logFile -Value $logEntry
+  }
+  catch{
+    Write-Host "Error updating firmware: $_"
+  }
 })
 
 function Get-BackupConfiguration {
