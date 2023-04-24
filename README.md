@@ -5,6 +5,8 @@
 
 ### Bugs
 
+### 24/04/2023 ###
+
 1. Further testing is needed as looks like code is running okay 
 2. Window style is set to none so the only way to close the Code is through the task bar
 
