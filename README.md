@@ -1,25 +1,29 @@
 # Firmware_updater
 
 - This is a Firmware updater built with powershell to update drayteks firmware 
-- Command to run cd "C: path " Invoke-Expression ".\draytek.ps1"
+- Command to run Invoke-Expression ".\draytek.ps1"
 
 ### Bugs
 
-1. The XAML file was named "DraytekUpdaterGUI.xaml" but the root element in the file was not named "DraytekUpdaterGUI". This caused an error when attempting to load the XAML file with the following line of code: **`$window = [Windows.Markup.XamlReader]::Load($reader)`**. To fix this, you can either remove the **`x:Class`** attribute from the root element of the XAML file or rename the root element to "DraytekUpdaterGUI".
-2. After loading the XAML file, the script attempted to find several controls using the **`FindName`** method, but these controls were not found. This caused errors when attempting to call methods on these null references. To fix this, ensure that the names of the controls in the XAML file match the names used in the script.
-3. There was an error in the script when attempting to add event handlers to the "Download Backup" and "Update Firmware" buttons. The error occurred because the controls were not found and were therefore null. To fix this, ensure that the names of the controls in the XAML file match the names used in the script. Also, make sure that the event handlers are enclosed in braces **`{}`** instead of parentheses **`()`**.
-4. Finally, there was an error when attempting to display the window using the **`ShowDialog()`** method. This error occurred because the **`Window`** object was null. This was caused by the errors in the previous steps which prevented the XAML file from being loaded correctly and the controls from being initialized.
- 
+1. Further testing is needed as looks like code is running okay 
+2. Window style is set to none so the only way to close the Code is through the task bar
 
- ### Possible fixes
+ ### Suggestions
 
- These errors suggest that the $window variable is null and therefore unable to find the UI elements that are defined using $window.FindName(). This could be due to an issue with loading the XAML file or a problem with the XAML file itself.
+- Use parameter validation: When you define a function, it's good practice to validate the input parameters to make sure they're in the expected format and range. You can use parameter attributes like [Parameter(Mandatory=$true)] and [ValidateRange()] to ensure that the input is valid.
 
- You can try the following steps to troubleshoot the issue:
+- Use error handling: Your code doesn't currently include any error handling. If something goes wrong during the execution of a command, the script will simply terminate. You can use try-catch blocks to handle errors and provide appropriate feedback to the user.
 
-   - Verify that the XAML file exists in the correct location.
-   - Ensure that the XAML file is valid and doesn't contain any syntax errors.
-   - Check if the XAML file is set to "Build Action: Resource" in the Visual Studio project properties.
-   - Try rebuilding the project to ensure that the XAML file is properly included in the build output.
-   - Verify that the XAML namespace is defined correctly in the PowerShell script.
-   - Add some debug statements to check the value of $window and see if it is null or not.
+- Add comments: It's a good practice to add comments to your code to explain what each section does. This makes it easier for others to understand your code and helps you to remember why you wrote the code in a particular way.
+
+- Modularize your code: You can break your code into smaller functions or modules that perform specific tasks. This makes the code more readable, maintainable, and easier to test.
+
+- Use a logging module: Instead of writing to a log file manually, you can use a logging module like Write-Log or Log4Net to manage your logs. These modules offer a lot of features, such as log rotation, log levels, and log filtering.
+
+- Use a configuration file: Instead of hard-coding configuration parameters like log file paths and backup file paths, you can use a configuration file that stores these values. This makes it easier to manage your settings and modify them as needed.
+
+- Use a build tool: You can use a build tool like PSake or Invoke-Build to automate your build and deployment process. These tools allow you to define tasks, dependencies, and parameters for your script and run them in a consistent way.
+
+## Images
+
+![Image of GUI](https://file%2B.vscode-resource.vscode-cdn.net/c%3A/Users/jonathankeefe.ASTONBERKELEY/OneDrive%20-%20Aston%20Berkeley%20Systems%20Ltd/Pictures/Screenshots/Screenshot%202023-04-24%20140945.png?version%3D1682341856571)
