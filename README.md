@@ -37,14 +37,17 @@
 - First test on Draytek Vigor2925n-plus
 - Configure Draytek
 - Downloading backups
+- Updating Firmware
 
 #### Result
 
 - Downloading backups - fail - Uses http protocol
+- Updating Firmware - fail - 
 
 #### Outcome
 
 - Error downloading backup configuration: The server committed a protocol violation. Section=ResponseHeader Detail=Header name is invalid (downloading backups)
+- Error updating firmware could not find a part of the path 'C:\temp\firmware.bin'
 
 ## Images
 
