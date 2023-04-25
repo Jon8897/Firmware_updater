@@ -1,5 +1,6 @@
 # Load GUI from XAML
 Add-Type -AssemblyName WindowsBase
+Add-Type -AssemblyName PresentationFramework
 
 [xml]$xaml = Get-Content "DraytekUpdaterGUI.xaml"
 $reader = New-Object System.Xml.XmlNodeReader($xaml)
@@ -30,7 +31,7 @@ $btnDownloadBackup.Add_Click({
     $logFile = "C:\temp\DraytekUpdater.log"
     $backupConfigPath = "C:\temp\draytek_config_backup.cfg"
 
-    # Download backup configuration
+    # Download backup configuration (Uses HTTP protocol)
     Get-BackupConfiguration -deviceIP $deviceIP -deviceCredential $deviceCredential -backupConfigPath $backupConfigPath
   }
   catch{

@@ -30,6 +30,22 @@
 
 - Use a build tool: You can use a build tool like PSake or Invoke-Build to automate your build and deployment process. These tools allow you to define tasks, dependencies, and parameters for your script and run them in a consistent way.
 
+## Testing 
+
+### 25/04/2023 ###
+
+- First test on draytek Vigor2925n-plus
+- Configure Draytek
+- Downloading backups
+
+#### Result
+
+- Downloading backups - fail - Uses http protcol
+
+#### Outcome
+
+- Error downloading backup configuration: The server committed a protocol violation. Section=ResponseHeader Detail=Header name is invalid (downloading backups)
+
 ## Images
 
 ![Image of GUI](https://file%2B.vscode-resource.vscode-cdn.net/c%3A/Users/jonathankeefe.ASTONBERKELEY/OneDrive%20-%20Aston%20Berkeley%20Systems%20Ltd/Pictures/Screenshots/Screenshot%202023-04-24%20140945.png?version%3D1682341856571)
