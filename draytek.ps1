@@ -57,6 +57,11 @@ $btnUpdateFirmware.Add_Click({
     # Download firmware file
     Invoke-WebRequest -Uri $firmwareUrl -OutFile $downloadPath
 
+    # Check if firmware file exists
+    if(-not (Test-Path $downloadPath)) {
+      throw "Firmware file '$downloadPath' not found"
+  }
+
     # Update firmware
     Invoke-WebRequest -Uri "http://$deviceIP/cgi-bin/upgrade.cgi" -Credential $deviceCredential -Method POST -InFile $downloadPath -ContentType "application/octet-stream"
 
