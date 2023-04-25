@@ -42,7 +42,7 @@
 #### Result
 
 - Downloading backups - fail - Uses http protocol
-- Updating Firmware - fail - 
+- Updating Firmware - fail - path 
 
 #### Outcome
 
