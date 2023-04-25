@@ -1,4 +1,6 @@
-# Firmware_updater
+# Testing This Is Needed Before Moving Forward
+
+## Firmware_updater
 
 - This is a Firmware updater built with powershell to update drayteks firmware 
 - Command to run Invoke-Expression ".\draytek.ps1"
@@ -11,6 +13,8 @@
 2. Window style is set to none so the only way to close the Code is through the task bar
 
  ### Suggestions
+
+### 24/04/2023 ###
 
 - Use parameter validation: When you define a function, it's good practice to validate the input parameters to make sure they're in the expected format and range. You can use parameter attributes like [Parameter(Mandatory=$true)] and [ValidateRange()] to ensure that the input is valid.
 
