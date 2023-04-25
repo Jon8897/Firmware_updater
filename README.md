@@ -1,4 +1,4 @@
-# Testing This Is Needed Before Moving Forward
+# Testing This Is Needed Before Moving Forward #
 
 ## Firmware_updater
 
@@ -34,13 +34,13 @@
 
 ### 25/04/2023 ###
 
-- First test on draytek Vigor2925n-plus
+- First test on Draytek Vigor2925n-plus
 - Configure Draytek
 - Downloading backups
 
 #### Result
 
-- Downloading backups - fail - Uses http protcol
+- Downloading backups - fail - Uses http protocol
 
 #### Outcome
 
