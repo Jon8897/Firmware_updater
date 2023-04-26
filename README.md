@@ -40,7 +40,8 @@
 
 ### 26/04/2023 ###
 - Update downloading backups to use a https protocol.
-- Adding new function 
+- Added new function 
+- Added Icone
 
 #### Result
 
@@ -49,7 +50,7 @@
 - Updating Firmware - fail - path
 
 ### 26/04/2023 ###
-- 
+- Icon failed to load
 
 #### Outcome
 
@@ -58,7 +59,7 @@
 - Error updating firmware could not find a part of the path 'C:\temp\firmware.bin'
 
 ### 26/04/2023 ###
-- 
+- Can't open cause no image has been set
 
 ## Images
 
