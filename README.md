@@ -50,7 +50,7 @@
 - Updating Firmware - fail - path
 
 ### 26/04/2023 ###
-- Icon failed to load
+- Icon failed to load because didn't put full path int
 
 #### Outcome
 
