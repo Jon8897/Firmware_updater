@@ -6,7 +6,6 @@ Add-Type -AssemblyName PresentationFramework
 [xml]$xaml = Get-Content "DraytekUpdaterGUI.xaml"
 $reader = New-Object System.Xml.XmlNodeReader($xaml)
 $window = [Windows.Markup.XamlReader]::Load($reader)
-Add-Type -AssemblyName PresentationFramework
 
 # Get UI elements
 $txtDeviceIP = $window.FindName("txtDeviceIP")
