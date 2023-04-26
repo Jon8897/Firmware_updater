@@ -2,10 +2,27 @@
 # Load GUI from XAML
 Add-Type -AssemblyName WindowsBase
 Add-Type -AssemblyName PresentationFramework
+Add-Type -AssemblyName System.Drawing
+
+# Get Icon path
+$iconPath = "C:\Users\jonathankeefe.ASTONBERKELEY\OneDrive - Aston Berkeley Systems Ltd\Desktop\Projects\git-projects\Firmware_updater\Icons\icon.ico"
 
 [xml]$xaml = Get-Content "DraytekUpdaterGUI.xaml"
 $reader = New-Object System.Xml.XmlNodeReader($xaml)
 $window = [Windows.Markup.XamlReader]::Load($reader)
+
+# Set icon for application window and taskbar
+$window.Icon = New-Object System.Windows.Media.Imaging.BitmapImage
+$window.Icon.BeginInit()
+$window.Icon.UriSource = New-Object System.Uri($iconPath)
+$window.Icon.EndInit()
+$iconHandle = $window.Icon.StreamSource | % { (New-Object System.IO.BinaryReader($_)).ReadBytes(($_).Length) }
+
+# Set taskbar icon
+$process = Get-Process -Id $pid
+$win = New-Object System.Windows.Interop.WindowInteropHelper($window)
+$win.Owner = $process.MainWindowHandle
+$win.Icon = New-Object System.Drawing.Icon -ArgumentList @(New-Object System.IO.MemoryStream(,$iconHandle),16,16)
 
 # Get UI elements
 $txtDeviceIP = $window.FindName("txtDeviceIP")
