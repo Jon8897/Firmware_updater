@@ -33,21 +33,31 @@
 ## Testing 
 
 ### 25/04/2023 ###
-
 - First test on Draytek Vigor2925n-plus
 - Configure Draytek
 - Downloading backups
 - Updating Firmware
 
+### 26/04/2023 ###
+- Update downloading backups to use a https protocol.
+
 #### Result
 
+### 25/04/2023 ###
 - Downloading backups - fail - Uses http protocol
-- Updating Firmware - fail - path 
+- Updating Firmware - fail - path
+
+### 26/04/2023 ###
+- 
 
 #### Outcome
 
+### 25/04/2023 ###
 - Error downloading backup configuration: The server committed a protocol violation. Section=ResponseHeader Detail=Header name is invalid (downloading backups)
 - Error updating firmware could not find a part of the path 'C:\temp\firmware.bin'
+
+### 26/04/2023 ###
+- 
 
 ## Images
 
