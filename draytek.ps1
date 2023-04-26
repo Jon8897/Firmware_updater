@@ -18,6 +18,9 @@ $window.Icon.UriSource = New-Object System.Uri($iconPath)
 $window.Icon.EndInit()
 $iconHandle = $window.Icon.StreamSource | % { (New-Object System.IO.BinaryReader($_)).ReadBytes(($_).Length) }
 
+# Show the window in the taskbar
+$window.ShowInTaskbar = $true
+
 # Set taskbar icon
 $process = Get-Process -Id $pid
 $win = New-Object System.Windows.Interop.WindowInteropHelper($window)
