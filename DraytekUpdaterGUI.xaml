@@ -1,13 +1,21 @@
+<!-- This is the main window of the application -->
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Name="DraytekUpdaterGUI"
         Title="Draytek Firmware Updater" Width="400" Height="300"
         WindowStyle="None">
+
+    <!-- This is the main grid for the window -->
     <Grid>
+        <!-- These are the row definitions for the grid -->
         <Grid.RowDefinitions>
+            <!-- The first row contains the input fields for device IP, username, password, and firmware URL -->
             <RowDefinition Height="Auto"/>
+            <!-- The second row contains the buttons for downloading backup and updating firmware -->
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <!-- This is the stack panel containing the input fields for device IP, username, password, and firmware URL -->
         <StackPanel Grid.Row="0" Margin="10">
             <Label Content="Device IP:" />
             <TextBox x:Name="txtDeviceIP" />
@@ -18,6 +26,8 @@
             <Label Content="Firmware URL:" />
             <TextBox x:Name="txtFirmwareUrl" />
         </StackPanel>
+
+        <!-- This is the stack panel containing the buttons for downloading backup and updating firmware -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
             <Button x:Name="btnDownloadBackup" Content="Download Backup" Margin="5" Padding="10,5" />
             <Button x:Name="btnUpdateFirmware" Content="Update Firmware" Margin="5" Padding="10,5" />
