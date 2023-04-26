@@ -31,7 +31,7 @@ $btnDownloadBackup.Add_Click({
       $logFile = "C:\temp\DraytekUpdater.log"
       $backupConfigPath = "C:\temp\draytek_config_backup.cfg"
 
-      # Download backup configuration (Uses HTTP protocol)
+      # Download backup configuration
       $url = "https://$deviceIP/cgi-bin/export_config.exp"
       Invoke-WebRequest -Uri $url -Credential $deviceCredential -OutFile $backupConfigPath
     }
