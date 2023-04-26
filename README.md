@@ -50,7 +50,8 @@
 - Updating Firmware - fail - path
 
 ### 26/04/2023 ###
-- Icon failed to load because didn't put full path int
+- Icon failed to load because didn't put full path in correctly
+- Adding icon into taskbar issue 
 
 #### Outcome
 
@@ -60,6 +61,8 @@
 
 ### 26/04/2023 ###
 - Can't open cause no image has been set
+    - Path added and image is showing 
+- Still loads but issue with icon appearing in task bar
 
 ## Images
 
