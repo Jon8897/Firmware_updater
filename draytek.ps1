@@ -1,3 +1,4 @@
+# PowerShell Version 3.0 or higher
 # Load GUI from XAML
 Add-Type -AssemblyName WindowsBase
 Add-Type -AssemblyName PresentationFramework
