@@ -8,7 +8,7 @@
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize"
-        Icon="myIcon.ico">
+        Icon="C:\Users\jonathankeefe.ASTONBERKELEY\OneDrive - Aston Berkeley Systems Ltd\Desktop\Projects\git-projects\Firmware_updater\Icons\icon.ico">
 
     <!-- This is the main grid for the window -->
     <Grid>
