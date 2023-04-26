@@ -29,7 +29,10 @@ $btnDownloadBackup.Add_Click({
 
       # Configuration
       $logFile = "C:\temp\DraytekUpdater.log"
-      $backupConfigPath = "C:\temp\draytek_config_backup.cfg"
+      $date = Get-date -Format ddMMyyyy
+      $backupFolderPath = "C:\temp\draytek_backups\$deviceIP\$date"
+      $backupConfigPath = "$backupFolderPath\draytek_config_backup.cfg"
+      New-Item -ItemType Directory -Path $backupFolderPath -Force | Out-Null
 
       # Download backup configuration
       $url = "https://$deviceIP/cgi-bin/export_config.exp"
