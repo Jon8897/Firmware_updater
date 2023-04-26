@@ -40,6 +40,7 @@
 
 ### 26/04/2023 ###
 - Update downloading backups to use a https protocol.
+- Adding new function 
 
 #### Result
 
